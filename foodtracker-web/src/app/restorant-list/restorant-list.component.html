@@ -1,0 +1,109 @@
+<div class="container">
+
+    <mat-card>
+        <mat-card-title>Today's Recommended Restorant </mat-card-title>
+        <mat-card-content>
+            {{randomRestorant.name}},{{randomRestorant.province}}-{{randomRestorant.district}}
+        </mat-card-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Filter Restorant Type</mat-label>
+            <mat-select [(ngModel)]="selectedType">
+                <mat-option>All</mat-option>
+              <mat-option *ngFor="let restorant of restorantTypes" [value]="restorant.type">
+                {{restorant.type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </mat-card>
+    <mat-list-item *ngFor="let restorant of restorants">
+        <div class="row">
+        <mat-accordion *ngIf="selectedType == restorant.type">
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <div class="col-md-6">
+                        <mat-panel-title>
+                            {{ restorant.name }}
+                        </mat-panel-title>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-panel-description >
+                            {{ restorant.type }},
+                            {{ restorant.province }}-{{ restorant.district }}
+                            {{ restorant.establishment.slice(0, 10)}}
+                        </mat-panel-description>
+                    </div>
+                </mat-expansion-panel-header>
+                    <p *ngIf="restorant.comments==[]">there is no comments</p>
+                    <mat-list-item *ngFor="let comment of restorant.comments">
+                        <b color="primary">{{comment.commentator}}:</b>
+                        {{comment.value}} 
+                    <mat-icon *ngFor="let i of [].constructor(comment.score)" color="primary" aria-hidden="true">star</mat-icon>
+                    <br><hr>
+                    </mat-list-item>   
+                    <mat-action-row>
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                        <mat-icon color="primary" aria-hidden="true" aria-label="Example home icon">update</mat-icon>
+                        </mat-expansion-panel-header>
+                        <app-update-restorant [restorantName]="restorant.name"></app-update-restorant>
+                      </mat-expansion-panel>
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                        <mat-icon color="primary" aria-hidden="true" aria-label="Example home icon">comment</mat-icon>
+                        </mat-expansion-panel-header>
+                        <app-create-comment [restorantName]="restorant.name"></app-create-comment>
+                      </mat-expansion-panel>
+                    <button mat-button  color="primary" (click)="delete(restorant.name)"> <mat-icon  aria-hidden="true" aria-label="Example home icon">delete</mat-icon> </button>
+
+                  </mat-action-row>
+            </mat-expansion-panel>
+        </mat-accordion>
+        
+
+        <mat-accordion *ngIf="!selectedType">
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <div class="col-md-6">
+                        <mat-panel-title>
+                            {{ restorant.name }}
+                        </mat-panel-title>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-panel-description >
+                            {{ restorant.type }},
+                            {{ restorant.province }}-{{ restorant.district }}
+                            {{ restorant.establishment.slice(0, 10)}}
+                        </mat-panel-description>
+                    </div>
+                </mat-expansion-panel-header>
+                    <p *ngIf="restorant.comments==[]">there is no comments</p>
+                    <mat-list-item *ngFor="let comment of restorant.comments">
+                        <b color="primary">{{comment.commentator}}:</b>
+                        {{comment.value}} 
+                    <mat-icon *ngFor="let i of [].constructor(comment.score)" color="primary" aria-hidden="true">star</mat-icon>
+                    <br><hr>
+                    </mat-list-item>   
+                    <mat-action-row>
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                        <mat-icon color="primary" aria-hidden="true" aria-label="Example home icon">update</mat-icon>
+                        </mat-expansion-panel-header>
+                        <app-update-restorant [restorantName]="restorant.name"></app-update-restorant>
+                      </mat-expansion-panel>
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                        <mat-icon color="primary" aria-hidden="true" aria-label="Example home icon">comment</mat-icon>
+                        </mat-expansion-panel-header>
+                        <app-create-comment [restorantName]="restorant.name"></app-create-comment>
+                      </mat-expansion-panel>
+                    <button mat-button  color="primary" (click)="delete(restorant.name)"> <mat-icon  aria-hidden="true" aria-label="Example home icon">delete</mat-icon> </button>
+
+                  </mat-action-row>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        </div>
+    </mat-list-item>
+</div>
+
+
