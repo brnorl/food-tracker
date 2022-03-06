@@ -47,7 +47,7 @@
 ## Used Tech->
 <ul>
     <li>.NET Core
-    <li>Entitiy Framework(Code-First Approach)
+    <li>Entity Framework(Code-First Approach)
     <li>HttpClient
     <li>Angular.js
     <li>Angular-Material
