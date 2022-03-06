@@ -25,9 +25,6 @@ export class RestorantListComponent implements OnInit {
       }
       return acc;
     }, []);
-    
-    
-    console.log(this.restorantTypes);
   }
 
   

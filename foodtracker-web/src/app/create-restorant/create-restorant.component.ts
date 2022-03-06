@@ -11,9 +11,7 @@ import {FormBuilder} from '@angular/forms';
 export class CreateRestorantComponent implements OnInit {
 response:any;
 
-constructor(private formBuilder:FormBuilder,private http:HttpClient) { 
-
-  }
+constructor(private formBuilder:FormBuilder,private http:HttpClient) { }
   restorantForm = this.formBuilder.group({
     name:[''],
     type:[''],
